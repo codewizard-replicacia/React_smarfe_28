@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="Model">
+            <EntityType HasStream="false" Name="Alert">
+                <Key>
+                    <PropertyRef Name="AId"/>
+                </Key>
+                <Property Name="AId" Type="Edm.Int64" isUnique="false"/>
+                <Property Name="Name" Type="Edm.String" isUnique="false"/>
+                <Property Name="Symptom" Type="Edm.String" isUnique="false"/>
+                <Property Name="Date" Type="Edm.DateTimeOffset" isUnique="false"/>
+                <Property Name="Description" Type="Edm.String" isUnique="false"/>
+                <Property Name="Severity" Type="Edm.String" isUnique="false"/>
+                <Property Name="Status" Type="Edm.String" isUnique="false"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="WaterPipe">
+                <Key>
+                    <PropertyRef Name="Wid"/>
+                </Key>
+                <Property Name="Wid" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="Name" Type="Edm.String" isUnique="false"/>
+                <Property Name="Length" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="StartingAt" Type="Edm.String" isUnique="false"/>
+                <Property Name="EndingAt" Type="Edm.String" isUnique="false"/>
+                <NavigationProperty Name="Alerts" Type="Collection(Model.Alert)"/>
+            </EntityType>
+            <EntityContainer Name="Container">
+                <EntitySet Name="Alerts" EntityType="Model.Alert"/>
+                <EntitySet Name="WaterPipes" EntityType="Model.WaterPipe">
+                    <NavigationPropertyBinding Path="Alerts" Target="Alerts"/>
+                </EntitySet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
